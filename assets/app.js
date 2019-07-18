@@ -25,7 +25,7 @@ function displayHeroes() {
 
             $("#hero-view").append(pOne);
 
-            var image = responseStuff[i].images.fixed_height_small.url;
+            var image = responseStuff[i].images.fixed_height.url;
 
             var pTwo = $("<img>");
             pTwo.attr("src", image);
