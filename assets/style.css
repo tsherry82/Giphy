@@ -1,11 +1,8 @@
 #hero-view {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(8, auto);
-    grid-gap: 3px;
-    object-fit: cover;
+    display: flex;
+    flex-wrap: wrap;
+}
+img {
+    padding: 2px;
 }
 
-img {
-    display: inline-flexbox;
-}

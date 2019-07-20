@@ -5,6 +5,8 @@ var heroes = ["Batman", "Spider-Man", "Superman", "Thor", "The Flash", "Ironman"
 
 // **********FUNCTIONS**********
 function displayHeroes() {
+
+    $("#hero-view").empty()
     var heroesOne = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?&q=" + heroesOne + "&api_key=M3lQ64OulYwHWOmWxOkBCxwbDWpTc8sM&limit=10"
 
@@ -21,16 +23,21 @@ function displayHeroes() {
         for (var i = 0; i < responseStuff.length; i++) {
 
             var rating = responseStuff[i].rating;
+            var newDiv = $("<div class='new-div'>")
             var pOne = $("<p>").text("Rating: " + rating);
 
-            $("#hero-view").append(pOne);
-
             var image = responseStuff[i].images.fixed_height.url;
+            var animate = response.data[i].images.fixed_height.url;
+            var still = response.data[i].images.fixed_height_still.url;
 
             var pTwo = $("<img>");
             pTwo.attr("src", image);
+            pTwo.attr("data-animate", animate);
+            pTwo.attr("data-still", still);
             pTwo.addClass("heroGif");
-            $("#hero-view").append(pTwo);
+            newDiv.append(pOne);
+            newDiv.append(pTwo);
+            $("#hero-view").append(newDiv);
         }
     });
 
@@ -79,18 +86,19 @@ $("#add-hero").on("click", function (event) {
 });
 $(document).on("click", ".hero-btn", displayHeroes);
 
-$(".heroGif").on("click", function () {
+$(document).on("click", ".heroGif", function () {
 
     var state = $(this).attr("data-state");
-    var animate = response.data[i].images.fixed_height.url;
-    var still = response.data[i].images.fixed_height_still.url;
+
+
+
     if (state === "still") {
 
-        $(this).attr("src", $(this), animate);
+        $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
     }
     else {
-        $(this).attr("src", $(this), still);
+        $(this).attr("src", $(this).attr('data-still'));
         $(this).attr("data-state", "still");
     }
 });
