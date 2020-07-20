@@ -1,6 +1,6 @@
-// ************PSUEDOCODE*****************
+
 // ***************VARIABLES*****************
-var heroes = ["Batman", "Spider-Man", "Superman", "Thor", "The Flash", "Ironman", "Wonderwoman", "Captain America", "Aquaman", "Black Panther", "Loki", "Hulk", "Green Lantern", "Wolverine", "Green Arrow", "Rogue", "Black Canary", "Professor X", "Joker", "Magneto"];
+var heroes = ["Batman", "Joker", "Spider-Man", "Superman", "Thor", "The Flash", "Ironman", "Wonder Woman", "Captain America", "Aquaman", "Black Panther", "Hulk", "Green Lantern", "Professor X",  "Magneto"];
 
 
 // **********FUNCTIONS**********
@@ -8,7 +8,7 @@ function displayHeroes() {
 
     $("#hero-view").empty()
     var heroesOne = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?&q=" + heroesOne + "&api_key=M3lQ64OulYwHWOmWxOkBCxwbDWpTc8sM&limit=10"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?&q=" + heroesOne + "&api_key=M3lQ64OulYwHWOmWxOkBCxwbDWpTc8sM&limit=25"
 
     // **********AJAX**********
 
@@ -42,10 +42,7 @@ function displayHeroes() {
     });
 
 }
-
 // **********BUTTONS**********
-
-
 function renderButton() {
 
     $("#button-view").empty()
@@ -61,13 +58,8 @@ function renderButton() {
         button.text(heroes[i]);
 
         $("#button-view").append(button);
-
     }
 }
-
-
-
-
 // **********ADDING MORE HEROES**********
 $("#add-hero").on("click", function (event) {
 
@@ -81,17 +73,12 @@ $("#add-hero").on("click", function (event) {
     $("#hero-input").val("");
 
     renderButton();
-
-
 });
 $(document).on("click", ".hero-btn", displayHeroes);
 
 $(document).on("click", ".heroGif", function () {
 
     var state = $(this).attr("data-state");
-
-
-
     if (state === "still") {
 
         $(this).attr("src", $(this).attr("data-animate"));
